@@ -39,6 +39,9 @@ export default function AdvertManager() {
     useState(DEFAULT_FONT);
   const [messageFontSize, setMessageFontSize] = useState(18);
   const [videoWidthPercent, setVideoWidthPercent] = useState(100);
+  const [entryEffect, setEntryEffect] = useState("fade");
+  const [exitEffect, setExitEffect] = useState("fade");
+  const [effectDurationMs, setEffectDurationMs] = useState(800);
   const [editingId, setEditingId] = useState(null);
 
   async function loadAdverts() {
@@ -462,6 +465,61 @@ export default function AdvertManager() {
           </label>
         </div>
 
+        <div className="advert-animation-fields">
+          <label>
+            Entry effect
+            <select
+              value={entryEffect}
+              onChange={(event) =>
+                setEntryEffect(event.target.value)
+              }
+            >
+              <option value="fade">Fade</option>
+              <option value="slide-up">Slide up</option>
+              <option value="slide-down">Slide down</option>
+              <option value="slide-left">Slide left</option>
+              <option value="slide-right">Slide right</option>
+              <option value="zoom-in">Zoom in</option>
+              <option value="zoom-out">Zoom out</option>
+            </select>
+          </label>
+
+          <label>
+            Exit effect
+            <select
+              value={exitEffect}
+              onChange={(event) =>
+                setExitEffect(event.target.value)
+              }
+            >
+              <option value="fade">Fade</option>
+              <option value="slide-up">Slide up</option>
+              <option value="slide-down">Slide down</option>
+              <option value="slide-left">Slide left</option>
+              <option value="slide-right">Slide right</option>
+              <option value="zoom-in">Zoom in</option>
+              <option value="zoom-out">Zoom out</option>
+            </select>
+          </label>
+
+          <label>
+            Animation speed
+            <select
+              value={effectDurationMs}
+              onChange={(event) =>
+                setEffectDurationMs(
+                  Number(event.target.value),
+                )
+              }
+            >
+              <option value="300">Fast - 300ms</option>
+              <option value="600">Normal - 600ms</option>
+              <option value="800">Smooth - 800ms</option>
+              <option value="1200">Slow - 1200ms</option>
+              <option value="2000">Very slow - 2000ms</option>
+            </select>
+          </label>
+        </div>
         <label>
           Video file
           <input
@@ -732,4 +790,6 @@ export default function AdvertManager() {
     </section>
   );
 }
+
+
 

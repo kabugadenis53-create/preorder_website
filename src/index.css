@@ -2247,3 +2247,327 @@ button:disabled {
   margin-left: auto;
   margin-right: auto;
 }
+
+/* Full-width advert message background and transitions */
+.hero-message-full-width {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: clamp(260px, 32vw, 440px);
+  padding: clamp(2rem, 6vw, 5rem);
+  box-sizing: border-box;
+  overflow: hidden;
+  text-align: center;
+  background:
+    radial-gradient(
+      circle at 18% 20%,
+      rgba(255, 255, 255, 0.2),
+      transparent 34%
+    ),
+    linear-gradient(
+      135deg,
+      #102a43 0%,
+      #1f4e79 48%,
+      #4f86c6 100%
+    );
+  color: #ffffff;
+  isolation: isolate;
+}
+
+.hero-message-full-width::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.12) 48%,
+      transparent 70%
+    );
+  content: "";
+  pointer-events: none;
+}
+
+.hero-message-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  color: inherit;
+  overflow-wrap: anywhere;
+}
+
+.hero-message-full-width .hero-advert-title,
+.hero-message-full-width .hero-advert-caption {
+  color: #ffffff;
+  text-align: center;
+}
+
+.hero-message-full-width .hero-advert-title {
+  text-shadow: 0 3px 18px rgba(0, 0, 0, 0.22);
+}
+
+.hero-message-full-width .hero-advert-caption {
+  max-width: 900px;
+  margin: 1rem auto 0;
+  line-height: 1.45;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+.hero-message-enter {
+  animation: advert-message-fade-in 800ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+.hero-message-exit {
+  animation: advert-message-fade-out 1000ms ease-in both;
+}
+
+@keyframes advert-message-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes advert-message-fade-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-14px) scale(0.98);
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-message-full-width {
+    min-height: 300px;
+    padding: 2rem 1.25rem;
+  }
+
+  .hero-message-full-width .hero-advert-caption {
+    line-height: 1.4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-message-enter,
+  .hero-message-exit {
+    animation: none;
+  }
+}
+
+.advert-animation-fields {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 16px;
+  background: rgba(148, 163, 184, 0.08);
+}
+
+.advert-animation-fields label {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.advert-animation-fields select {
+  width: 100%;
+}
+
+@media (max-width: 760px) {
+  .advert-animation-fields {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Configurable advert entry and exit animations */
+.hero-message-content {
+  animation-iteration-count: 1;
+  transform-origin: center;
+}
+
+@keyframes advert-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes advert-fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes advert-slide-up-in {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes advert-slide-up-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-32px);
+  }
+}
+
+@keyframes advert-slide-down-in {
+  from {
+    opacity: 0;
+    transform: translateY(-32px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes advert-slide-down-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+}
+
+@keyframes advert-slide-left-in {
+  from {
+    opacity: 0;
+    transform: translateX(42px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes advert-slide-left-out {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(-42px);
+  }
+}
+
+@keyframes advert-slide-right-in {
+  from {
+    opacity: 0;
+    transform: translateX(-42px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes advert-slide-right-out {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(42px);
+  }
+}
+
+@keyframes advert-zoom-in {
+  from {
+    opacity: 0;
+    transform: scale(0.82);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes advert-zoom-in-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes advert-zoom-out {
+  from {
+    opacity: 0;
+    transform: scale(1.18);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes advert-zoom-out-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0.82);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-message-content {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
