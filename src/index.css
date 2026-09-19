@@ -1976,3 +1976,274 @@ button:disabled {
     position: static;
   }
 }
+
+/* Advert hero: full message first, then 50/50 split */
+.hero-advert-panel {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.hero-message-full-width {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.hero-message-content {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.hero-advert-title {
+  margin: 0;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.hero-advert-caption {
+  margin: 0.75rem 0 0;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+/* After 10 seconds: equal message and video columns */
+.hero-advert-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  width: 100%;
+  min-width: 0;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.hero-advert-text-half,
+.hero-advert-video-half {
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.hero-advert-text-half {
+  display: flex;
+  align-items: center;
+  padding: clamp(1.25rem, 4vw, 3rem);
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.hero-advert-video-half {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  overflow: hidden;
+  background: #0f172a;
+}
+
+.hero-advert-video {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: clamp(300px, 32vw, 520px);
+  min-height: 300px;
+  border: 0;
+  border-radius: 0;
+  background: #0f172a;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Mobile layout */
+@media (max-width: 760px) {
+  .hero-advert-split {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-advert-text-half {
+    padding: 1.25rem;
+    text-align: center;
+  }
+
+  .hero-advert-video-half {
+    min-height: 240px;
+  }
+
+  .hero-advert-video {
+    height: clamp(240px, 62vw, 420px);
+    min-height: 240px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-advert-video {
+    animation: none;
+  }
+}
+
+/* Advert hero: full message first, then 50/50 split */
+.hero-advert-panel {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.hero-message-full-width {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.hero-message-content {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.hero-advert-title {
+  margin: 0;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.hero-advert-caption {
+  margin: 0.75rem 0 0;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+/* After 10 seconds: equal message and video columns */
+.hero-advert-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  width: 100%;
+  min-width: 0;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.hero-advert-text-half,
+.hero-advert-video-half {
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.hero-advert-text-half {
+  display: flex;
+  align-items: center;
+  padding: clamp(1.25rem, 4vw, 3rem);
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.hero-advert-video-half {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  overflow: hidden;
+  background: #0f172a;
+}
+
+.hero-advert-video {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: clamp(300px, 32vw, 520px);
+  min-height: 300px;
+  border: 0;
+  border-radius: 0;
+  background: #0f172a;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Mobile layout */
+@media (max-width: 760px) {
+  .hero-advert-split {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-advert-text-half {
+    padding: 1.25rem;
+    text-align: center;
+  }
+
+  .hero-advert-video-half {
+    min-height: 240px;
+  }
+
+  .hero-advert-video {
+    height: clamp(240px, 62vw, 420px);
+    min-height: 240px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-advert-video {
+    animation: none;
+  }
+}
+
+.hero-advert-title,
+.hero-advert-caption {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.hero-advert-title {
+  font-size: 1em;
+  line-height: 1.12;
+}
+
+.hero-advert-caption {
+  font-size: 0.72em;
+  line-height: 1.35;
+}
+
+@media (max-width: 760px) {
+  .hero-advert-title {
+    font-size: min(1em, 12vw);
+  }
+
+  .hero-advert-caption {
+    font-size: min(0.72em, 6vw);
+  }
+}
+
+/* Center the standalone 10-second advert message */
+.hero-message-full-width {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-message-full-width .hero-message-content {
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
+}
+
+.hero-message-full-width .hero-advert-title,
+.hero-message-full-width .hero-advert-caption {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}

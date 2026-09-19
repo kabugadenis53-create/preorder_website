@@ -42,31 +42,60 @@ export default function HeroAdvert() {
   }, []);
 
   const title = advert?.title?.trim() || DEFAULT_TITLE;
-  const caption = advert?.caption?.trim() || DEFAULT_CAPTION;
+
+  const caption =
+    advert?.caption?.trim() || DEFAULT_CAPTION;
 
   const fontFamily =
     advert?.message_font_family ||
     "Inter, Arial, sans-serif";
 
-  const fontSize = Number(advert?.message_font_size) || 18;
-
-  const videoWidth = Math.min(
-    100,
+  const fontSize = Math.min(
+    48,
     Math.max(
-      40,
-      Number(advert?.video_width_percent) || 100,
+      12,
+      Number(advert?.message_font_size) || 18,
     ),
   );
 
+  const textStyle = {
+    fontFamily,
+    fontSize: `${fontSize}px`,
+  };
+
+  const messageContent = (
+    <div
+      className="hero-message-content"
+      style={textStyle}
+    >
+      <p className="eyebrow hero-advert-title">
+        {title}
+      </p>
+
+      <p className="hero-advert-caption">
+        {caption}
+      </p>
+    </div>
+  );
+
+  if (!showVideo || !advert?.video_url) {
+    return (
+      <section className="hero-panel hero-advert-panel">
+        <div className="hero-message-full-width">
+          {messageContent}
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="hero-panel hero-advert-panel">
-      {showVideo && advert?.video_url && (
-        <div
-          className="hero-advert-video-wrap"
-          style={{
-            width: `${videoWidth}%`,
-          }}
-        >
+      <div className="hero-advert-split">
+        <div className="hero-advert-text-half">
+          {messageContent}
+        </div>
+
+        <div className="hero-advert-video-half">
           <video
             className="hero-advert-video"
             src={advert.video_url}
@@ -78,21 +107,8 @@ export default function HeroAdvert() {
             preload="auto"
           />
         </div>
-      )}
-
-      <div
-        className="hero-advert-details"
-        style={{
-          fontFamily,
-          fontSize: `${fontSize}px`,
-        }}
-      >
-        <p className="eyebrow">{title}</p>
-
-        <p className="hero-advert-caption">
-          {caption}
-        </p>
       </div>
     </section>
   );
 }
+
