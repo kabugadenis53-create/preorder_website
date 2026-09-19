@@ -910,12 +910,7 @@ export default function App() {
           />
         </>
       ) : (
-        <>
-          <div className="customer-currency-converter">
-            <CurrencyConverter />
-          </div>
-
-          <HeroAdvert />
+        <><HeroAdvert />
 
           <section className="storefront-layout">
             <div className="product-grid">
@@ -1078,13 +1073,21 @@ export default function App() {
               >
                 Continue on WhatsApp
               </button>
-            </aside>
+
+
+          <div className="customer-currency-converter">
+            <CurrencyConverter />
+          </div>            </aside>
           </section>
+
+
         </>
       )}
     </main>
   );
 }
+
+
 
 
 
