@@ -1877,3 +1877,102 @@ button:disabled {
     transform: none;
   }
 }
+
+/* Customer dashboard cards */
+.customer-currency-converter,
+.cart-panel {
+  width: 100%;
+  padding: 1.25rem;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.09);
+}
+
+/* Keep the converter in the right dashboard column */
+.customer-currency-converter {
+  position: sticky;
+  top: 1.25rem;
+  align-self: start;
+  margin: 0;
+}
+
+/* Cart and converter stack neatly on smaller screens */
+.customer-currency-converter,
+.cart-panel {
+  box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+  .customer-currency-converter {
+    position: static;
+    margin-top: 1rem;
+  }
+}
+
+.customer-dashboard-sidebar {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+  min-width: 0;
+}
+
+@media (min-width: 901px) {
+  .storefront-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .customer-dashboard-sidebar {
+    position: sticky;
+    top: 1.25rem;
+  }
+
+  .customer-dashboard-sidebar .customer-currency-converter {
+    position: static;
+  }
+}
+
+@media (max-width: 900px) {
+  .storefront-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .customer-dashboard-sidebar {
+    width: 100%;
+  }
+}
+
+/* Cart and currency converter sidebar */
+.cart-panel {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.cart-panel .customer-currency-converter {
+  width: 100%;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.28);
+}
+
+.cart-panel .customer-currency-converter > * {
+  width: 100%;
+}
+
+@media (min-width: 901px) {
+  .cart-panel {
+    position: sticky;
+    top: 1.25rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .cart-panel {
+    position: static;
+  }
+}
