@@ -807,6 +807,8 @@ export default function App() {
             onMessage={setMessage}
           />
 
+          <CurrencyConverter />
+
           <section className="upload-panel">
             <div>
               <p className="eyebrow">ADMIN MEDIA DESK</p>
@@ -881,13 +883,6 @@ export default function App() {
             </form>
           </section>
 
-          <MediaGallery
-            media={media}
-            selectedProductId={selectedProductId}
-          />
-
-          <AdvertManager />
-
           <div
             className="orders-report-control"
             data-orders-report-control="true"
@@ -910,9 +905,11 @@ export default function App() {
           {showOrdersReport && <OrdersReport />}
 
           <BrandingSettings />
-
-          <CurrencyConverter />
-
+          <AdvertManager />
+          <MediaGallery
+            media={media}
+            selectedProductId={selectedProductId}
+          />
         </>
       ) : (
         <><HeroAdvert />
@@ -1115,7 +1112,6 @@ export default function App() {
     </main>
   );
 }
-
 
 
 

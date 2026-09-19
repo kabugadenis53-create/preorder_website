@@ -12,12 +12,12 @@ import AdvertManager from "./components/AdvertManager.jsx";
 import HeroAdvert from "./components/HeroAdvert.jsx";
 import WatermarkedProductImage from "./components/WatermarkedProductImage.jsx";
 import ProductDetailsModal from "./components/ProductDetailsModal.jsx";
+
 const WHATSAPP_BUSINESS_NUMBER = "254710924081";
 
-
 export default function App() {
-  const [selectedDetailsProduct, setSelectedDetailsProduct] = useState(null);
-
+  const [selectedDetailsProduct, setSelectedDetailsProduct] =
+    useState(null);
 
   const [showOrdersReport, setShowOrdersReport] = useState(false);
   const [user, setUser] = useState(null);
@@ -148,30 +148,28 @@ export default function App() {
       setMessage("Supabase is not configured.");
       return;
     }
+
     if (authMode === "signup") {
+      if (!phone.trim()) {
+        setMessage("WhatsApp number is required.");
+        return;
+      }
 
-    
-  if (!phone.trim()) {
-    setMessage("WhatsApp number is required.");
-    return;
-  }
+      if (!fullName.trim()) {
+        setMessage("Name is required.");
+        return;
+      }
 
-  if (!fullName.trim()) {
-    setMessage("Name is required.");
-    return;
-  }
+      if (!email.trim()) {
+        setMessage("Email is required for account sign in.");
+        return;
+      }
 
-  if (!email.trim()) {
-    setMessage("Email is required for account sign in.");
-    return;
-  }
-
-  if (password !== confirmPassword) {
-    setMessage("Passwords do not match.");
-    return;
-  }
-}
- 
+      if (password !== confirmPassword) {
+        setMessage("Passwords do not match.");
+        return;
+      }
+    }
 
     setAuthLoading(true);
     setMessage("");
@@ -349,7 +347,9 @@ export default function App() {
     const orderNumber =
       `IPO-${Date.now()}-${Math.floor(
         Math.random() * 1000,
-      ).toString().padStart(3, "0")}`;
+      )
+        .toString()
+        .padStart(3, "0")}`;
 
     const orderPayload = {
       order_number: orderNumber,
@@ -472,7 +472,7 @@ export default function App() {
 
     const whatsappUrl =
       `https://wa.me/${WHATSAPP_BUSINESS_NUMBER}` +
-      `?text=${encodeURIComponent(message )}`;
+      `?text=${encodeURIComponent(message)}`;
 
     setMessage(
       `Order ${orderNumber} saved successfully.`,
@@ -593,7 +593,9 @@ export default function App() {
     return (
       <main className="auth-page">
         <section className="auth-card">
-          <p className="eyebrow">GLOBAL PREORDER MARKETPLACE</p>
+          <p className="eyebrow">
+            GLOBAL PREORDER MARKETPLACE
+          </p>
 
           <h1>
             {authMode === "signin"
@@ -794,6 +796,11 @@ export default function App() {
 
       {view === "admin" && isAdmin ? (
         <>
+          {/* =====================================================
+              1. CATALOGUE MANAGEMENT
+              Add product + edit/delete products
+              ===================================================== */}
+
           <AddProductForm
             userId={user.id}
             onCreated={handleProductCreated}
@@ -807,18 +814,29 @@ export default function App() {
             onMessage={setMessage}
           />
 
+          {/* =====================================================
+              2. ADMIN MEDIA DESK
+              Upload product media + preview media
+              ===================================================== */}
+
           <section className="upload-panel">
             <div>
               <p className="eyebrow">ADMIN MEDIA DESK</p>
+
               <h2>Upload product media</h2>
+
               <p className="muted">
                 Upload one or more images or a product video.
               </p>
             </div>
 
-            <form className="upload-form" onSubmit={uploadMedia}>
+            <form
+              className="upload-form"
+              onSubmit={uploadMedia}
+            >
               <label>
                 Product
+
                 <select
                   value={selectedProductId}
                   onChange={(event) =>
@@ -826,7 +844,10 @@ export default function App() {
                   }
                 >
                   {products.map((product) => (
-                    <option value={product.id} key={product.id}>
+                    <option
+                      value={product.id}
+                      key={product.id}
+                    >
                       {product.name}
                     </option>
                   ))}
@@ -835,6 +856,7 @@ export default function App() {
 
               <label>
                 Media type
+
                 <select
                   value={mediaType}
                   onChange={(event) => {
@@ -849,6 +871,7 @@ export default function App() {
 
               <label>
                 Choose media
+
                 <input
                   type="file"
                   accept={
@@ -859,7 +882,9 @@ export default function App() {
                   multiple={mediaType === "image"}
                   onChange={(event) =>
                     setFiles(
-                      Array.from(event.target.files || []),
+                      Array.from(
+                        event.target.files || [],
+                      ),
                     )
                   }
                 />
@@ -870,7 +895,9 @@ export default function App() {
                 type="submit"
                 disabled={uploading}
               >
-                {uploading ? "Uploading..." : "Upload media"}
+                {uploading
+                  ? "Uploading..."
+                  : "Upload media"}
               </button>
 
               {files.length > 0 && (
@@ -886,7 +913,16 @@ export default function App() {
             selectedProductId={selectedProductId}
           />
 
+          {/* =====================================================
+              3. ADVERTISING
+              Video adverts
+              ===================================================== */}
+
           <AdvertManager />
+
+          {/* =====================================================
+              4. ORDERS REPORT
+              ===================================================== */}
 
           <div
             className="orders-report-control"
@@ -909,13 +945,21 @@ export default function App() {
 
           {showOrdersReport && <OrdersReport />}
 
+          {/* =====================================================
+              5. BRAND SETTINGS
+              ===================================================== */}
+
           <BrandingSettings />
 
-          <CurrencyConverter />
+          {/* =====================================================
+              6. CURRENCY CONVERTER
+              ===================================================== */}
 
+          <CurrencyConverter />
         </>
       ) : (
-        <><HeroAdvert />
+        <>
+          <HeroAdvert />
 
           <section className="storefront-layout">
             <div className="product-grid">
@@ -1012,6 +1056,7 @@ export default function App() {
 
             <aside className="cart-panel">
               <p className="eyebrow">ORDER BUILDER</p>
+
               <h3>Your cart</h3>
 
               {cart.length === 0 ? (
@@ -1021,11 +1066,19 @@ export default function App() {
               ) : (
                 <div className="cart-list">
                   {cart.map((item) => (
-                    <div className="cart-row" key={item.id}>
+                    <div
+                      className="cart-row"
+                      key={item.id}
+                    >
                       <div>
                         <strong>{item.name}</strong>
+
                         <small>
-                          {formatMoney(item.price, "KES")} each
+                          {formatMoney(
+                            item.price,
+                            "KES",
+                          )}{" "}
+                          each
                         </small>
                       </div>
 
@@ -1033,7 +1086,10 @@ export default function App() {
                         <button
                           type="button"
                           onClick={() =>
-                            updateQuantity(item.id, -1)
+                            updateQuantity(
+                              item.id,
+                              -1,
+                            )
                           }
                         >
                           −
@@ -1044,7 +1100,10 @@ export default function App() {
                         <button
                           type="button"
                           onClick={() =>
-                            updateQuantity(item.id, 1)
+                            updateQuantity(
+                              item.id,
+                              1,
+                            )
                           }
                         >
                           +
@@ -1058,23 +1117,33 @@ export default function App() {
               <div className="summary">
                 <div>
                   <span>Subtotal</span>
+
                   <strong>
-                    {formatMoney(cartSubtotal, "KES")}
+                    {formatMoney(
+                      cartSubtotal,
+                      "KES",
+                    )}
                   </strong>
                 </div>
 
                 <div>
                   <span>Estimated shipping</span>
+
                   <strong>
-                    {formatMoney(cartShipping, "KES")}
+                    {formatMoney(
+                      cartShipping,
+                      "KES",
+                    )}
                   </strong>
                 </div>
 
                 <div className="total">
                   <span>Estimated total</span>
+
                   <strong>
                     {formatMoney(
-                      cartSubtotal + cartShipping,
+                      cartSubtotal +
+                        cartShipping,
                     )}
                   </strong>
                 </div>
@@ -1089,15 +1158,14 @@ export default function App() {
                 Continue on WhatsApp
               </button>
 
-
-          <div className="customer-currency-converter">
-            <CurrencyConverter />
-          </div>            </aside>
+              <div className="customer-currency-converter">
+                <CurrencyConverter />
+              </div>
+            </aside>
           </section>
-
-
         </>
       )}
+
       {selectedDetailsProduct && (
         <ProductDetailsModal
           product={selectedDetailsProduct}
@@ -1115,50 +1183,3 @@ export default function App() {
     </main>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
