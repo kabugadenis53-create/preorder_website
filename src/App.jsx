@@ -8,6 +8,8 @@ import ProductManager from "./components/ProductManager.jsx";
 import OrdersReport from "./components/OrdersReport.jsx";
 import BrandingSettings from "./components/BrandingSettings.jsx";
 import SiteBranding from "./components/SiteBranding.jsx";
+import AdvertManager from "./components/AdvertManager.jsx";
+import HeroAdvert from "./components/HeroAdvert.jsx";
 import WatermarkedProductImage from "./components/WatermarkedProductImage.jsx";
 const WHATSAPP_BUSINESS_NUMBER = "254710924081";
 
@@ -901,6 +903,7 @@ export default function App() {
           {showOrdersReport && <OrdersReport />}
 
           <BrandingSettings />
+          <AdvertManager />
           <MediaGallery
             media={media}
             selectedProductId={selectedProductId}
@@ -912,16 +915,7 @@ export default function App() {
             <CurrencyConverter />
           </div>
 
-          <section className="hero-panel">
-            <p className="eyebrow">CURATED FROM CHINA & BEYOND</p>
-
-            <h2>Find your next must-have.</h2>
-
-            <p>
-              Browse updated products, check estimated shipping,
-              and build your cart before ordering.
-            </p>
-          </section>
+          <HeroAdvert />
 
           <section className="storefront-layout">
             <div className="product-grid">
@@ -1091,6 +1085,8 @@ export default function App() {
     </main>
   );
 }
+
+
 
 
 

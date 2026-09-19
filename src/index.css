@@ -1656,3 +1656,193 @@ button:disabled {
     max-height: 52px;
   }
 }
+
+.advert-upload-preview {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 16px;
+  background: rgba(15, 23, 42, 0.04);
+}
+
+.advert-preview-video {
+  display: block;
+  width: min(100%, 520px);
+  max-height: 300px;
+  border-radius: 12px;
+  background: #0f172a;
+  object-fit: contain;
+}
+
+.advert-card-video {
+  display: block;
+  width: 100%;
+  max-height: 260px;
+  border-radius: 12px;
+  background: #0f172a;
+  object-fit: contain;
+}
+
+/* Responsive uploaded advert video */
+.hero-advert-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.hero-advert-copy {
+  min-width: 0;
+}
+
+.hero-advert-video {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 52vh;
+  min-height: 180px;
+  aspect-ratio: 16 / 9;
+  border-radius: 18px;
+  background: #0f172a;
+  object-fit: contain;
+  object-position: center;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.2);
+}
+
+@media (min-width: 760px) {
+  .hero-advert-panel {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    align-items: center;
+  }
+
+  .hero-advert-video {
+    max-height: 360px;
+  }
+}
+
+@media (max-width: 759px) {
+  .hero-advert-video {
+    max-height: 48vh;
+    min-height: 160px;
+    border-radius: 14px;
+  }
+}
+
+.advert-customization-fields {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 16px;
+  background: rgba(148, 163, 184, 0.08);
+}
+
+.advert-customization-fields label {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.advert-customization-fields select,
+.advert-customization-fields input[type="range"] {
+  width: 100%;
+}
+
+@media (max-width: 760px) {
+  .advert-customization-fields {
+    grid-template-columns: 1fr;
+  }
+}
+
+.hero-advert-panel {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.hero-advert-video-wrap {
+  max-width: 100%;
+  min-width: 0;
+  margin: 0 auto;
+  transition: width 180ms ease-out;
+}
+
+.hero-advert-video {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 52vh;
+  min-height: 180px;
+  aspect-ratio: 16 / 9;
+  border-radius: 18px;
+  background: #0f172a;
+  object-fit: contain;
+  object-position: center;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.2);
+}
+
+.hero-advert-details {
+  width: 100%;
+  padding: 1rem 0 0;
+}
+
+.hero-advert-details .eyebrow {
+  margin-bottom: 0.45rem;
+}
+
+.hero-advert-caption {
+  margin: 0;
+  line-height: 1.6;
+}
+
+@media (max-width: 759px) {
+  .hero-advert-video-wrap {
+    width: 100% !important;
+  }
+
+  .hero-advert-video {
+    max-height: 48vh;
+    min-height: 160px;
+    border-radius: 14px;
+  }
+
+  .hero-advert-details {
+    font-size: min(18px, 5vw) !important;
+  }
+}
+
+/* Final advert fill layout */
+.hero-advert-video-wrap {
+  width: 100% !important;
+  max-width: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+.hero-advert-video {
+  display: block;
+  width: 100% !important;
+  max-width: 100%;
+  height: clamp(240px, 42vw, 520px);
+  min-height: 240px;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 18px;
+  background: #0f172a;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (max-width: 759px) {
+  .hero-advert-video {
+    height: clamp(220px, 62vw, 420px);
+    min-height: 220px;
+    border-radius: 14px;
+  }
+}
