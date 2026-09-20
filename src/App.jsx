@@ -60,13 +60,10 @@ export default function App() {
 
       try {
         const {
-          data: { user: currentUser },
-          error: userError,
-        } = await supabase.auth.getUser();
+          data: { session },
+        } = await supabase.auth.getSession();
 
-        if (userError) {
-          throw userError;
-        }
+        const currentUser = session?.user || null;
 
         if (!mounted) {
           return;
@@ -84,6 +81,8 @@ export default function App() {
           if (mounted) {
             setProfile(currentProfile || null);
           }
+        } else {
+          setProfile(null);
         }
 
         const {
@@ -99,21 +98,17 @@ export default function App() {
           throw productError;
         }
 
-        let mediaData = [];
-
-        const { data: loadedMedia, error: mediaError } =
-          await supabase
-            .from("product_media")
-            .select("*")
-            .order("sort_order", { ascending: true });
-
-        if (!mediaError) {
-          mediaData = loadedMedia || [];
-        }
+        const {
+          data: loadedMedia,
+          error: mediaError,
+        } = await supabase
+          .from("product_media")
+          .select("*")
+          .order("sort_order", { ascending: true });
 
         if (mounted) {
           setProducts(productData || []);
-          setMedia(mediaData);
+          setMedia(mediaError ? [] : loadedMedia || []);
 
           if (productData?.length > 0) {
             setSelectedProductId(productData[0].id);
@@ -136,8 +131,25 @@ export default function App() {
 
     loadApplication();
 
+    const {
+      data: { subscription },
+    } = supabase?.auth.onAuthStateChange(
+      (_event, session) => {
+        if (!mounted) {
+          return;
+        }
+
+        setUser(session?.user || null);
+
+        if (!session?.user) {
+          setProfile(null);
+        }
+      },
+    ) || { data: { subscription: null } };
+
     return () => {
       mounted = false;
+      subscription?.unsubscribe();
     };
   }, []);
 
@@ -1115,6 +1127,7 @@ export default function App() {
     </main>
   );
 }
+
 
 
 
